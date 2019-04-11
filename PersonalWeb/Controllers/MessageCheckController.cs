@@ -7,24 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication5.Models;
 
-namespace WebApplication5.Controllers
+namespace PersonalWeb.Controllers
 {
-    public class MessagesController : Controller
+    public class MessageCheckController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public MessagesController(DatabaseContext context)
+        public MessageCheckController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Messages
+        // GET: MessageCheck
         public async Task<IActionResult> Index()
         {
             return View(await _context.Messages.ToListAsync());
         }
 
-        // GET: Messages/Details/5
+        // GET: MessageCheck/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,21 +42,22 @@ namespace WebApplication5.Controllers
             return View(message);
         }
 
-        // GET: Messages/Create
+        // GET: MessageCheck/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Messages/Create
+        // POST: MessageCheck/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Comment")] Message message)
+        public async Task<IActionResult> Create([Bind("Id,DateTime,Name,Comment")] Message message)
         {
             if (ModelState.IsValid)
             {
+                message.DateTime = DateTime.Now;
                 _context.Add(message);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -64,7 +65,7 @@ namespace WebApplication5.Controllers
             return View(message);
         }
 
-        // GET: Messages/Edit/5
+        // GET: MessageCheck/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,12 +81,12 @@ namespace WebApplication5.Controllers
             return View(message);
         }
 
-        // POST: Messages/Edit/5
+        // POST: MessageCheck/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Comment")] Message message)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DateTime,Name,Comment")] Message message)
         {
             if (id != message.Id)
             {
@@ -115,7 +116,7 @@ namespace WebApplication5.Controllers
             return View(message);
         }
 
-        // GET: Messages/Delete/5
+        // GET: MessageCheck/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +134,7 @@ namespace WebApplication5.Controllers
             return View(message);
         }
 
-        // POST: Messages/Delete/5
+        // POST: MessageCheck/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

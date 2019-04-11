@@ -35,7 +35,7 @@ namespace WebApplication5
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var connection = "Data Source=message.db";
+            var connection = "Data Source=WebDb.db";
             services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection));
         }
 

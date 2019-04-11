@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApplication5.Migrations
+namespace PersonalWeb.Migrations
 {
     public partial class InitialCreate : Migration
     {

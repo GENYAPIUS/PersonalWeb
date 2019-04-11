@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication5.Models;
 
-namespace WebApplication5.Migrations
+namespace PersonalWeb.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190409045649_InitialCreate")]
+    [Migration("20190411052714_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
