@@ -22,7 +22,7 @@ namespace WebApplication5.Controllers
             return View();
         }
 
-        public async Task<ActionResult> MessageBoard()
+        public async Task<IActionResult> MessageBoard()
         {
 
             var collection = await _context.Messages.ToListAsync();
@@ -48,6 +48,7 @@ namespace WebApplication5.Controllers
                 return RedirectToAction(nameof(MessageBoard));
             }
             return View(message);
+
         }
 
         public IActionResult Resume()

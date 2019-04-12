@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - 幻夜的個人網站</title>
+    <title>@ViewData["Title"]幻夜的個人網站</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -19,7 +19,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-3 fixed-top transparent">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">幻夜的個人網站</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,28 +29,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">首頁</a>
+                            <a class="nav-link text-info" asp-area="" asp-controller="Home" asp-action="Index">首頁</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MessageBoard">留言版</a>
+                            <a class="nav-link text-info" asp-area="" asp-controller="Home" asp-action="MessageBoard">留言版</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Resume">簡歴</a>
+                            <a class="nav-link text-info" asp-area="" asp-controller="Home" asp-action="Resume">簡歴</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MessageCheck" asp-action="Index">MessageCheck</a>
+                            <a class="nav-link text-info" asp-area="" asp-controller="MessageCheck" asp-action="Index">MessageCheck</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    @*<div class="container "></div>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">
