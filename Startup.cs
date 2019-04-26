@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplication5.Models;
+using PersonalWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApplication5
+namespace PersonalWeb
 {
     public class Startup
     {

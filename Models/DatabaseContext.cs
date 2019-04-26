@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApplication5.Models
+namespace PersonalWeb.Models
 {
     public class DatabaseContext : DbContext
     {

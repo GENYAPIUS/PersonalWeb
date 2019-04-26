@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication5.Models;
+using PersonalWeb.Models;
 
 namespace PersonalWeb.Migrations
 {
@@ -16,7 +16,7 @@ namespace PersonalWeb.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
 
-            modelBuilder.Entity("WebApplication5.Models.Message", b =>
+            modelBuilder.Entity("PersonalWeb.Models.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -25,11 +25,24 @@ namespace PersonalWeb.Migrations
 
                     b.Property<DateTime>("DateTime");
 
-                    b.Property<string>("Name");
+                    b.Property<int?>("MessageId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MessageId");
+
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("PersonalWeb.Models.Message", b =>
+                {
+                    b.HasOne("PersonalWeb.Models.Message")
+                        .WithMany("Messages")
+                        .HasForeignKey("MessageId");
                 });
 #pragma warning restore 612, 618
         }
