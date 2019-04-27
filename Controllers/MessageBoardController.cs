@@ -20,7 +20,7 @@ namespace PersonalWeb.Controllers
         public async Task<IActionResult> Index(string sortOrder, string search, string currentFilter)
         {
             var message = new Message();
-           
+
             ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
             ViewData["DateSortParm"] = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
             ViewData["CurrentFilter"] = search;
@@ -46,6 +46,30 @@ namespace PersonalWeb.Controllers
 
             message.Messages = await messages.AsNoTracking().ToListAsync();
 
+            return View(message);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Name,Comment")] Message message)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    message.DateTime = DateTime.Now;
+                    _context.Add(message);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "無法傳送您的留言，" +
+                                             "請再試一次，如果" +
+                                             "問題仍然存在，" +
+                                             "請聯絡管理者。");
+            }
             return View(message);
         }
     }
