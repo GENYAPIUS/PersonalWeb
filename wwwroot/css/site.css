@@ -83,3 +83,15 @@ body {
 .transparent {
     opacity: 0.8;
 }
+
+.card{
+    background-color:rgba(255,255,255,0.7);
+}
+
+.card.box{
+    width:auto;
+    height:auto;
+    display:none;
+}
+
+
