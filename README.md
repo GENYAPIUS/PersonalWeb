@@ -7,7 +7,6 @@
 使用`CMD`進入儲存repo的資料夾，輸入指令如下：
 
 ```cmd
-dotnet ef migrations add InitialCreate
 dotnet ef database update
 dotnet run
 ```
