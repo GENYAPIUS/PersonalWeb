@@ -16,6 +16,6 @@ dotnet run
 Now listening on: https://localhost:XXXX
 Now listening on: http://localhost:XXXX
 ```
-(XXXX為Port號碼，請自行取代！)
+（ XXXX為Port號碼，請自行取代！ ）
 
 即可使用瀏覽器，複製上列其中一個網址來瀏覽網頁。
