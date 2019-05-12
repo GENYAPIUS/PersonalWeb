@@ -5,5 +5,5 @@
 
 
 $(document).ready(function () {
-    $("#card").fadeIn(1500);
+    $("#card").fadeIn(1000);
 });
