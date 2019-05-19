@@ -60,7 +60,7 @@ namespace PersonalWeb.Controllers
                 message.DateTime = DateTime.Now;
                 _context.Add(message);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(message);
         }
@@ -111,7 +111,7 @@ namespace PersonalWeb.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(message);
         }
@@ -142,7 +142,7 @@ namespace PersonalWeb.Controllers
             var message = await _context.Messages.FindAsync(id);
             _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
 
         private bool MessageExists(int id)

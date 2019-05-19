@@ -60,7 +60,7 @@ namespace PersonalWeb.Controllers
                     message.DateTime = DateTime.Now;
                     _context.Add(message);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index");
                 }
             }
             catch (DbUpdateException)
