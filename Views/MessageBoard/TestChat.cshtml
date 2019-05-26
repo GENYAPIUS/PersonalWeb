@@ -1,4 +1,4 @@
-﻿@model  PersonalWeb.Models.Message
+﻿@model PersonalWeb.Models.Message
 
 <div class="container margin-top-80px">
     <div class="row">&nbsp;</div>
@@ -19,20 +19,27 @@
     </div>
     @foreach (var item in Model.Messages)
     {
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <div class="float-left">@Html.DisplayFor(modelItem => item.Name)</div>
-                <div class="float-right">@Html.DisplayFor(modelItem => item.DateTime)</div><br />
-                <div>@Html.DisplayFor(modelItem => item.Comment)</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 chatbox">
+                    <div class="float-left">使用者：@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="float-right">@Html.DisplayFor(modelItem => item.DateTime)</div><br />
+                    <div class="col-12"><hr /></div>
+                    <div>@Html.DisplayFor(modelItem => item.Comment)</div>
+                </div>
             </div>
         </div>
+        <br />
     }
-    <div class="row">
-        <div class="col-2">&nbsp;</div>
-        <div class="col-8" id="messagesList">
+
+    <div id="messagesList"></div>
+    @*<div class="container">
+        <div class="row">
+            <div class="col-2">&nbsp;</div>
+            <div class="col-8 chatbox" id="messagesList"></div>
         </div>
-    </div>
+    </div>*@
 </div>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
