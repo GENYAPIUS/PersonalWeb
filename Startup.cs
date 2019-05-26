@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PersonalWeb.Models;
 using Microsoft.EntityFrameworkCore;
+using PersonalWeb.Models;
+using PersonalWeb.Hubs;
+
 
 namespace PersonalWeb
 {
@@ -35,6 +37,8 @@ namespace PersonalWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+
+            services.AddSignalR();
             var connection = "Data Source=WebDb.db";
             services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection));
         }
@@ -57,6 +61,11 @@ namespace PersonalWeb
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
 
             app.UseMvc(routes =>
             {
