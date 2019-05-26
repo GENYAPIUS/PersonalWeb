@@ -15,20 +15,22 @@ namespace PersonalWeb.Hubs
         {
 
 
-            var content = $"<div class='container'>" +
-                            $"<div class='row'>"+
-                                $"<div class='col-2'>&nbsp;</div>"+
-                                $"<div class='col-8 chatbox'>"+
-                                    $"<div class='float-left'>使用者：{user}</div>" +
-                                    $"<div class='float-right'>{DateTime.Now.ToShortDateString()}&nbsp{DateTime.Now.ToLongTimeString()}</div><br />" +
+            var content1 = $"<div class='container'>" +
+                            $"<div class='row'>" +
+                                $"<div class='col-2'>&nbsp;</div>" +
+                                $"<div class='col-8 chatbox'>" +
+                                    $"<div class='float-left'>使用者：";
+            var content2 =          $"</div>" +
+                                    $"<div class='float-right'>{DateTime.Now.ToShortDateString()}{DateTime.Now.ToLongTimeString()}</div><br />" +
                                     $"<div class='col-12'><hr /></div>" +
-                                    $"<div>{message}</div>"+
+                                    $"<div>";
+            var content3 =          $"</div>"+
                                 $"</div>" +
                             $"</div>" +
                           $"</div>" +
                           $"<br />";
 
-            await Clients.All.SendAsync("ReceiveMessage", content);
+            await Clients.All.SendAsync("ReceiveMessage", content1,content2,content3, user, message);
         }
     }
 }

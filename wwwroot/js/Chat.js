@@ -5,10 +5,14 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveMessage", function (content) {
+connection.on("ReceiveMessage", function (content1, content2, content3, user, message) {
+    //置換XSS可能字
+    user = user.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    message = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    //組合字串並使用HTML
+    var contentEncode = content1 + user + content2 + message + content3;
     var div = document.createElement("div");
-    //div.className = document.getElementsByClassName("col-8");
-    div.innerHTML = content;
+    div.innerHTML = contentEncode;
     document.getElementById("messagesList").appendChild(div);
 });
 
