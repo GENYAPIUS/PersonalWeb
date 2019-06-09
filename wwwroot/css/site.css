@@ -95,8 +95,8 @@ body {
 }
 
 .chatbox {
-    box-shadow: rgba(225, 225, 225, 0.5) 0px 10px 10px;
-    background-color: darkgray
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 10px;
+    background-color: rgba(225,225,225,0.65);
 }
 
 

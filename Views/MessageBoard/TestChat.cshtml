@@ -3,13 +3,20 @@
 <div class="container margin-top-80px">
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-2">&nbsp;</div>
-        <div class="col-8" style="background-color:lightslategrey">
-            User..........<input type="text" id="userInput" />
-            <br />
-            Message...<input type="text" id="messageInput" />
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
+            <div class="col-2">&nbsp;</div>
+            <div class="col-8" style="background-color:lightslategrey">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form asp-controller="MessageBoard" asp-action="SendMessage">
+                    <div class="form-group">
+                        <label asp-for="Name"></label><input asp-for="Name" id="userInput" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Comment"></label><input asp-for="Comment" id="messageInput" />
+                        <span asp-validation-for="Comment" class="text-danger"></span>
+                        <input type="submit" id="sendButton" value="SendMessage" />
+                    </div>
+                </form>
+            </div>
         <div class="m-2">&nbsp;</div>
     </div>
     <div class="row">

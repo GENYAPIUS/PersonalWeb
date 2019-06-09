@@ -37,10 +37,13 @@ namespace PersonalWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-
+            services.AddSingleton<MessageStore>();
             services.AddSignalR();
             var connection = "Data Source=WebDb.db";
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection),ServiceLifetime.Singleton);
+
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

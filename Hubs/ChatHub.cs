@@ -10,7 +10,11 @@ namespace PersonalWeb.Hubs
 {
     public class ChatHub : Hub
     {
-        
+        private readonly MessageStore _messageStore;
+        public ChatHub(MessageStore messageStore)
+        {
+            _messageStore = messageStore;
+        }
         public async Task SendMessage(string user, string message)
         {
 
@@ -29,7 +33,7 @@ namespace PersonalWeb.Hubs
                             $"</div>" +
                           $"</div>" +
                           $"<br />";
-
+            _messageStore.AddMessage(user, message);
             await Clients.All.SendAsync("ReceiveMessage", content1,content2,content3, user, message);
         }
     }
