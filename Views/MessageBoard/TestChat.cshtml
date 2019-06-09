@@ -4,15 +4,16 @@
     <div class="row">&nbsp;</div>
     <div class="row">
             <div class="col-2">&nbsp;</div>
-            <div class="col-8" style="background-color:lightslategrey">
+            <div class="col-8 box-shadow" style="background-color:antiquewhite">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <form asp-controller="MessageBoard" asp-action="SendMessage">
+                <form asp-controller="MessageBoard" asp-action="AddMessage">
                     <div class="form-group">
-                        <label asp-for="Name"></label><input asp-for="Name" id="userInput" />
+                        <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                         <br />
-                        <label asp-for="Comment"></label><input asp-for="Comment" id="messageInput" />
-                        <span asp-validation-for="Comment" class="text-danger"></span>
+                        <label asp-for="Comment">Comment：</label><br />
+                        <textarea asp-for="Comment" id="messageInput"></textarea>
+                        <span asp-validation-for="Comment" class="text-danger"></span><br />
                         <input type="submit" id="sendButton" value="SendMessage" />
                     </div>
                 </form>
