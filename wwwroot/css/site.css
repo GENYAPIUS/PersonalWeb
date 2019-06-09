@@ -56,19 +56,20 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-
+/*照片大小*/
 .myPicture {
     height:auto;
     width: 100%;
     margin: auto;
 }
 
+/*小圖示*/
 .resumeIcon{
     height:25px;
     width:25px;
 }
 
-
+/*首頁背景圖*/
 .col.indeximage {
     background: url('/images/background.png') center top no-repeat;
     background-size:cover;
@@ -76,24 +77,29 @@ body {
     height: 700px;
 }
 
+/*容納navbar的網頁上邊界*/
 .margin-top-80px {
     margin-top: 80px;
 }
 
+/*透明度*/
 .transparent {
     opacity: 0.8;
 }
 
+/*首頁淡入小卡*/
 .card{
     background-color:rgba(255,255,255,0.7);
 }
 
+/*首頁淡入小卡大小*/
 .card.box{
     width:auto;
     height:auto;
     display:none;
 }
 
+/*留言訊息框*/
 .chatbox {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 10px;
     background-color: rgba(225,225,225,0.65);
