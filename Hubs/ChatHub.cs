@@ -10,15 +10,13 @@ namespace PersonalWeb.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly MessageStore _messageStore;
-        public ChatHub(MessageStore messageStore)
+        private readonly DatabaseContext _context;
+        public ChatHub(DatabaseContext context)
         {
-            _messageStore = messageStore;
+            _context = context;
         }
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string user, string comment)
         {
-
-
             var content1 = $"<div class='container'>" +
                             $"<div class='row'>" +
                                 $"<div class='col-2'>&nbsp;</div>" +
@@ -33,8 +31,14 @@ namespace PersonalWeb.Hubs
                             $"</div>" +
                           $"</div>" +
                           $"<br />";
-            _messageStore.AddMessage(user, message);
-            await Clients.All.SendAsync("ReceiveMessage", content1,content2,content3, user, message);
+            _context.Add(new Message
+            {
+                Name = user,
+                Comment = comment,
+                DateTime = DateTime.Now
+            });
+            _context.SaveChanges();
+            await Clients.All.SendAsync("ReceiveMessage", content1,content2,content3, user, comment);
         }
     }
 }

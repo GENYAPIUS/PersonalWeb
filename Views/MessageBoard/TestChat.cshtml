@@ -3,21 +3,22 @@
 <div class="container margin-top-80px">
     <div class="row">&nbsp;</div>
     <div class="row">
-            <div class="col-2">&nbsp;</div>
-            <div class="col-8 box-shadow" style="background-color:antiquewhite">
+        <div class="col-2">&nbsp;</div>
+        <div class="col-8 box-shadow" style="background-color:antiquewhite">
+            <form asp-controller="MessageBoard" asp-action="AddMessage" class="was-validated">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <form asp-controller="MessageBoard" asp-action="AddMessage">
-                    <div class="form-group">
-                        <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                        <br />
-                        <label asp-for="Comment">Comment：</label><br />
-                        <textarea asp-for="Comment" id="messageInput"></textarea>
-                        <span asp-validation-for="Comment" class="text-danger"></span><br />
-                        <input type="submit" id="sendButton" value="SendMessage" />
-                    </div>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comment">Comment：</label><br />
+                    <textarea asp-for="Comment" id="messageInput"></textarea>
+                    <span asp-validation-for="Comment" class="text-danger"></span><br />
+                    <input type="submit" id="sendButton" value="SendMessage" />
+                </div>
+            </form>
+        </div>
         <div class="m-2">&nbsp;</div>
     </div>
     <div class="row">
@@ -43,11 +44,11 @@
 
     <div id="messagesList"></div>
     @*<div class="container">
-        <div class="row">
-            <div class="col-2">&nbsp;</div>
-            <div class="col-8 chatbox" id="messagesList"></div>
-        </div>
-    </div>*@
+            <div class="row">
+                <div class="col-2">&nbsp;</div>
+                <div class="col-8 chatbox" id="messagesList"></div>
+            </div>
+        </div>*@
 </div>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

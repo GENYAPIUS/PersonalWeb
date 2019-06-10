@@ -12,11 +12,9 @@ namespace PersonalWeb.Controllers
     public class MessageBoardController : Controller
     {
         private readonly DatabaseContext _context;
-        private readonly MessageStore _messageStore;
-        public MessageBoardController(DatabaseContext context,MessageStore messageStore)
+        public MessageBoardController(DatabaseContext context)
         {
             _context = context;
-            _messageStore = messageStore;
         }
         public async Task<IActionResult> Index(string sortOrder, string search, string currentFilter)
         {
@@ -74,7 +72,7 @@ namespace PersonalWeb.Controllers
             return View(message);
         }
 
-        public async Task<IActionResult> TestChat(string sortOrder, string search, string currentFilter)
+        public async Task<IActionResult> TestChat(/*string sortOrder, string search, string currentFilter*/)
         {
             var message = new Message();
 
@@ -100,33 +98,10 @@ namespace PersonalWeb.Controllers
             //        messages = messages = messages.OrderBy(m => m.DateTime);
             //        break;
             //}
-
+             
             message.Messages = await messages.AsNoTracking().ToListAsync();
 
             return View(message);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddMessage([Bind("Name,Comment")] Message message)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    message.DateTime = DateTime.Now;
-                    _messageStore.AddMessage(message.Name, message.Comment);
-                    return Created("AddMessage", message);
-                }
-            }
-            catch (DbUpdateException)
-            {
-                ModelState.AddModelError("", "無法傳送您的留言，" +
-                                             "請再試一次，如果" +
-                                             "問題仍然存在，" +
-                                             "請聯絡管理者。");
-            }
-            return View(message);
-        }
-
     }
 }
