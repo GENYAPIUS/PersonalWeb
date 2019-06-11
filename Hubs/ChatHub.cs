@@ -23,7 +23,7 @@ namespace PersonalWeb.Hubs
                                 $"<div class='col-8 chatbox'>" +
                                     $"<div class='float-left'>使用者：";
             var content2 =          $"</div>" +
-                                    $"<div class='float-right'>{DateTime.Now.ToShortDateString()}{DateTime.Now.ToLongTimeString()}</div><br />" +
+                                    $"<div class='float-right'>{DateTime.Now.ToString("yyyy/MM/dd tt hh:mm:ss")}</div><br />" +
                                     $"<div class='col-12'><hr /></div>" +
                                     $"<div>";
             var content3 =          $"</div>"+
