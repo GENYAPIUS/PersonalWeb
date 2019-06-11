@@ -12,6 +12,7 @@ namespace PersonalWeb.Models
     {
         public int Id { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd tt hh:mm:ss}")]
         public DateTime DateTime { get; set; }
 
         [Required,StringLength(20, ErrorMessage ="名字限定在 20 字以内。")]

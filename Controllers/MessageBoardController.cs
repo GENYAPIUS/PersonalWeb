@@ -47,7 +47,38 @@ namespace PersonalWeb.Controllers
 
             return View(message);
         }
-        
+        public async Task<IActionResult> Backup(string sortOrder, string search, string currentFilter)
+        {
+            var message = new Message();
+
+            ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
+            ViewData["DateSortParm"] = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewData["CurrentFilter"] = search;
+
+            var messages = from m in _context.Messages select m;
+            if (!string.IsNullOrEmpty(search))
+                messages = messages.Where(m => m.Comment.Contains(search));
+            switch (sortOrder)
+            {
+                case "name":
+                    messages = messages.OrderBy(m => m.Name);
+                    break;
+                case "name_desc":
+                    messages = messages.OrderByDescending(m => m.Name);
+                    break;
+                case "date_desc":
+                    messages = messages.OrderByDescending(m => m.DateTime);
+                    break;
+                default:
+                    messages = messages = messages.OrderBy(m => m.DateTime);
+                    break;
+            }
+
+            message.Messages = await messages.AsNoTracking().ToListAsync();
+
+            return View(message);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Comment")] Message message)
@@ -59,7 +90,7 @@ namespace PersonalWeb.Controllers
                     message.DateTime = DateTime.Now;
                     _context.Add(message);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Backup");
                 }
             }
             catch (DbUpdateException)
@@ -72,36 +103,5 @@ namespace PersonalWeb.Controllers
             return View(message);
         }
 
-        public async Task<IActionResult> TestChat(/*string sortOrder, string search, string currentFilter*/)
-        {
-            var message = new Message();
-
-            //ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
-            //ViewData["DateSortParm"] = string.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
-            //ViewData["CurrentFilter"] = search;
-
-            var messages = from m in _context.Messages select m;
-            //if (!string.IsNullOrEmpty(search))
-            //    messages = messages.Where(m => m.Comment.Contains(search));
-            //switch (sortOrder)
-            //{
-            //    case "name":
-            //        messages = messages.OrderBy(m => m.Name);
-            //        break;
-            //    case "name_desc":
-            //        messages = messages.OrderByDescending(m => m.Name);
-            //        break;
-            //    case "date_desc":
-            //        messages = messages.OrderByDescending(m => m.DateTime);
-            //        break;
-            //    default:
-            //        messages = messages = messages.OrderBy(m => m.DateTime);
-            //        break;
-            //}
-             
-            message.Messages = await messages.AsNoTracking().ToListAsync();
-
-            return View(message);
-        }
     }
 }

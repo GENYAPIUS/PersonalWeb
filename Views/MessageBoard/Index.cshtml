@@ -1,65 +1,61 @@
 ﻿@model PersonalWeb.Models.Message
-@{
-    ViewData["Title"] = "留言板 - ";
-}
-<h1 class="text-center margin-top-80px">留言板</h1>
-<center>
-    <form asp-action="Index" method="get">
-        <div class="float-right">
-            <p>
-                關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
-                <input type="submit" value="送出" class="btn btn-primary" /><br />
-                <a asp-action="Index">Back to Full List</a>
-            </p>
-        </div>
-    </form>
-    <br />
-    <table class="table table-striped text text-center">
-        <thead>
-            <tr>
-                <th scope="col"><a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DateTime)</a></th>
-                <th scope="col"><a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a></th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Comment)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Messages)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Comment)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</center>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <form asp-controller="MessageBoard" asp-action="Create" class="was-validated">
+
+<div class="container margin-top-80px">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-2">&nbsp;</div>
+        <div class="col-8 box-shadow" style="background-color:antiquewhite">
+            <form asp-controller="MessageBoard" asp-action="AddMessage" class="was-validated">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group col-5">
-                    <label asp-for="Name" class="control-label mr-3"></label>
-                    <input asp-for="Name" class="form-control" required />
-                    <div class="invalid-feedback">請填入名字</div>
+                <div class="form-group">
+                    <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="form-group col-7">
-                    <label asp-for="Comment" class="control-label"></label>
-                    <textarea asp-for="Comment" class="form-control" required></textarea>
-                    <div class="invalid-feedback">請填入留言</div>
-                    <span asp-validation-for="Comment" class="text-danger"></span>
-                </div>
-                <div class="form-group col-3">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                <div class="form-group">
+                    <label asp-for="Comment">Comment：</label><br />
+                    <textarea asp-for="Comment" id="messageInput"></textarea>
+                    <span asp-validation-for="Comment" class="text-danger"></span><br />
+                    <input type="submit" id="sendButton" value="SendMessage" />
                 </div>
             </form>
         </div>
+        <div class="m-2">&nbsp;</div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <a class="mr-5" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">照日期排序</a>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">照名子排序</a>
+            @*<div class="col-auto float-left">
+                關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" id="searchButton" value="送出" class="btn btn-primary" /><br />
+                <a asp-action="Index">Back to Full List</a>
+            </div>*@
+        </div>
+        <div class="col-2"></div>
+    </div>
+    @foreach (var item in Model.Messages)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 chatbox">
+                    <div class="float-left">使用者：@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="float-right">@Html.DisplayFor(modelItem => item.DateTime)</div><br />
+                    <div class="col-12"><hr /></div>
+                    <div>@Html.DisplayFor(modelItem => item.Comment)</div>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+
+    <div id="messagesList"></div>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

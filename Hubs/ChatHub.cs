@@ -35,7 +35,7 @@ namespace PersonalWeb.Hubs
             {
                 Name = user,
                 Comment = comment,
-                DateTime = DateTime.Now
+                DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd tt hh:mm:ss"))
             });
             _context.SaveChanges();
             await Clients.All.SendAsync("ReceiveMessage", content1,content2,content3, user, comment);
