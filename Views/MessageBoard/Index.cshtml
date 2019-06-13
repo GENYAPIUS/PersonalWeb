@@ -11,6 +11,7 @@
                     <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="Comment">Comment：</label><br />
                     <textarea asp-for="Comment" id="messageInput"></textarea>
@@ -31,11 +32,13 @@
         <div class="col-8">
             <a class="mr-5" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">照日期排序</a>
             <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">照名子排序</a>
-            @*<div class="col-auto float-left">
-                關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
-                <input type="submit" id="searchButton" value="送出" class="btn btn-primary" /><br />
-                <a asp-action="Index">Back to Full List</a>
-            </div>*@
+            <div class="col-auto float-right">
+                <form asp-action="Index" method="get">
+                    關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" id="searchButton" value="送出" class="btn btn-primary" /><br />
+                    <a class="float-right" asp-action="Index">Back to Full List</a>
+                </form>
+            </div>
         </div>
         <div class="col-2"></div>
     </div>

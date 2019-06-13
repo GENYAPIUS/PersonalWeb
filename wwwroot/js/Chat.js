@@ -22,6 +22,8 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
+
+
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
@@ -30,3 +32,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 });
+
+//document.getElementByID("searchButton").addEventListener("click", function (event) {
+//    var
+//})
