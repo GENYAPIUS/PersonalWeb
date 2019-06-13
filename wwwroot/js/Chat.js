@@ -32,7 +32,3 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 });
-
-//document.getElementByID("searchButton").addEventListener("click", function (event) {
-//    var
-//})
