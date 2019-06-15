@@ -1,57 +1,61 @@
 ﻿@model PersonalWeb.Models.Message
 
 <div class="container margin-top-80px">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-2">&nbsp;</div>
-        <div class="col-8 box-shadow" style="background-color:antiquewhite">
-            <form asp-controller="MessageBoard" asp-action="AddMessage" class="was-validated">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-12 col-sm-8 box-shadow" style="background-color:antiquewhite">
+                <form asp-controller="MessageBoard" asp-action="AddMessage" class="was-validated">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name">Name：</label>&nbsp;<br /><input asp-for="Name" id="userInput" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="Comment">Comment：</label><br />
-                    <textarea asp-for="Comment" id="messageInput"></textarea>
-                    <span asp-validation-for="Comment" class="text-danger"></span><br />
-                    <input type="submit" id="sendButton" value="SendMessage" />
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label asp-for="Comment">Comment：</label><br />
+                        <textarea asp-for="Comment" id="messageInput"></textarea>
+                        <span asp-validation-for="Comment" class="text-danger"></span><br />
+                        <input type="submit" id="sendButton" value="SendMessage" />
+                    </div>
+                </form>
+            </div>
+            <div class="m-1">&nbsp;</div>
         </div>
-        <div class="m-2">&nbsp;</div>
     </div>
     <div class="row">
         <div class="col-12">
             <hr />
         </div>
     </div>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <a class="mr-5" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">照日期排序</a>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">照名子排序</a>
-            <div class="col-auto float-right">
-                <form asp-action="Index" method="get">
-                    關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
-                    <input type="submit" id="searchButton" value="送出" class="btn btn-primary" /><br />
-                    <a class="float-right" asp-action="Index">Back to Full List</a>
-                </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-12 col-sm-8">
+                <a class="mr-5" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">照日期排序</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">照名子排序</a>
+                <div class="col-auto float-right">
+                    <form asp-action="Index" method="get">
+                        關鍵字：<input type="text" name="Search" value="@ViewData["CurrentFilter"]" />
+                        <input type="submit" id="searchButton" value="送出" class="btn btn-primary" /><br />
+                        <a class="float-right" asp-action="Index">Back to Full List</a>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
     @foreach (var item in Model.Messages)
     {
         <div class="container">
             <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8 chatbox">
-                    <div class="float-left">使用者：@Html.DisplayFor(modelItem => item.Name)</div>
-                    <div class="float-right">@Html.DisplayFor(modelItem => item.DateTime)</div><br />
-                    <div class="col-12"><hr /></div>
-                    <div>@Html.DisplayFor(modelItem => item.Comment)</div>
+                <div class="col-sm-2"></div>
+                <div class="col-12 col-sm-8 chatbox">
+                    <div class="mt-2 mb-2">
+                        <div class="float-left">使用者：@Html.DisplayFor(modelItem => item.Name)</div>
+                        <div class="float-right">@Html.DisplayFor(modelItem => item.DateTime)</div><br />
+                        <div class="col-12 mt-4 mb-2"><hr /></div>
+                        <div>@Html.DisplayFor(modelItem => item.Comment)</div>
+                    </div>
                 </div>
             </div>
         </div>

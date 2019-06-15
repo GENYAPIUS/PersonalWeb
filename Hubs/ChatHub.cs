@@ -19,14 +19,16 @@ namespace PersonalWeb.Hubs
         {
             var content1 = $"<div class='container'>" +
                             $"<div class='row'>" +
-                                $"<div class='col-2'>&nbsp;</div>" +
-                                $"<div class='col-8 chatbox'>" +
-                                    $"<div class='float-left'>使用者：";
-            var content2 =          $"</div>" +
-                                    $"<div class='float-right'>{DateTime.Now.ToString("yyyy/MM/dd tt hh:mm:ss")}</div><br />" +
-                                    $"<div class='col-12'><hr /></div>" +
-                                    $"<div>";
-            var content3 =          $"</div>"+
+                                $"<div class='col-sm-2'>&nbsp;</div>" +
+                                $"<div class='col-12 col-sm-8 chatbox'>" +
+                                    $"<div class='mt-2 mb-2'>" +
+                                        $"<div class='float-left'>使用者：";
+            var content2 =              $"</div>" +
+                                        $"<div class='float-right'>{DateTime.Now.ToString("yyyy/MM/dd tt hh:mm:ss")}</div><br />" +
+                                        $"<div class='col-12 mt-4 mb-2'><hr /></div>" +
+                                        $"<div>";
+            var content3 =              $"</div>" +
+                                     $"</div>" +
                                 $"</div>" +
                             $"</div>" +
                           $"</div>" +
